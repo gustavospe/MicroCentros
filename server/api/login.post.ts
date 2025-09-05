@@ -26,7 +26,7 @@ export default defineEventHandler(async (event: H3Event) => {
   if (!isPasswordValid) {
     return { error: 'Credenciais inválidas.' }
   }
-  
+
   const token = sign({ id: user._id, email: user.email }, JWT_SECRET, { expiresIn: '1d' })
   return { token }
 })
