@@ -1,14 +1,14 @@
 import { MongoClient } from 'mongodb'
+import { mongoConfig } from './mongo.config'
 
-const uri = process.env.MONGODB_URI || 'mongodb://localhost:27017/microcentros'
 let client: MongoClient | null = null
 
 export async function connectToDatabase() {
   if (!client) {
-    client = new MongoClient(uri)
+    client = new MongoClient(mongoConfig.uri)
     await client.connect()
   }
-  return client.db()
+  return client.db(mongoConfig.dbName)
 }
 
 export async function closeDatabaseConnection() {
